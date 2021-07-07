@@ -13,9 +13,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["node_modules/react-native-rich-text/assets/*"],
+    "packagerOpts": {
+      "assetExts": ["html"]
+    ,
     "ios": {
       "supportsTablet": true
     },
@@ -27,6 +28,4 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-  }
-}
+    }}}}

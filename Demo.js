@@ -1,33 +1,241 @@
- import { StyleSheet, Text, View , Image , TextInput} from 'react-native';
+
 import React, { Component } from 'react';
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState, ContentState, convertToRaw, convertFromHTML } from 'draft-js';
-import './node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { View, StyleSheet, Keyboard
+, TouchableWithoutFeedback, Text
+, KeyboardAvoidingView } from 'react-native';
+import RichText from 'react-native-rich-text';
+  export default class Demo extends Component {
 
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-export default class Demo extends Component {
-  render() {
-      return (
-<Editor/>
 
-      
-    );
-  }}
+render() {
+  return (
+
+    <RichText value={text}>
+          <RichText.Toolbar>
+            <RichText.Toolbar.BOLD />
+            <RichText.Toolbar.ITALIC />
+            <RichText.Toolbar.H1 />
+            <RichText.Toolbar.UL />
+            <RichText.Toolbar.OL />
+            <RichText.Toolbar.CODE />
+            <RichText.Toolbar.IMAGE />
+            <RichText.Toolbar.Custom
+              callback={() => {
+                this.setState(p => ({ ...p, toggle: !p.toggle }));
+                return { reload: true };
+              }}
+            >
+              <Text>Toggle</Text>
+            </RichText.Toolbar.Custom>
+          </RichText.Toolbar>
+          <RichText.Editor onChangeText={text => changeText(text)} />
+        </RichText>
+  )
+}
+  }
   
-  const styles = StyleSheet.create({
-    container: {
-      // flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      top: 10 ,
-      left:50 ,
-      right: 50 ,
-      
-    },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+     alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+// import React, { Component } from 'react';
+// import { View, StyleSheet, Keyboard
+// , TouchableWithoutFeedback, Text
+// , KeyboardAvoidingView } from 'react-native';
+
+// import  CNRichTextEditor , { CNToolbar, getInitialObject , getDefaultStyles } from "react-native-cn-richtext-editor";
+
+// const defaultStyles = getDefaultStyles();
+// export default class Demo extends Component {
+
+//   constructor(props) {
+//     super(props);
+    
+//     this.state = {
+//         selectedTag : 'body',
+//         selectedStyles : [],
+//         value: [getInitialObject()]
+//     };
+
+//     this.editor = null;
+// }
+
+// onStyleKeyPress = (toolType) => {
+//     this.editor.applyToolbar(toolType);
+// }
+
+// onSelectedTagChanged = (tag) => {
+//     this.setState({
+//         selectedTag: tag
+//     })
+// }
+
+// onSelectedStyleChanged = (styles) => { 
+//     this.setState({
+//         selectedStyles: styles,
+//     })
+// }
+
+// onValueChanged = (value) => {
+//     this.setState({
+//         value: value
+//     });
+// }
+
+
+// render() {
+//     return (
+//         <KeyboardAvoidingView 
+//         behavior="padding" 
+//         enabled
+//         keyboardVerticalOffset={0}
+//         style={{
+//             flex: 1,
+//             paddingTop: 20,
+//             backgroundColor:'#eee',
+//             flexDirection: 'column', 
+//             justifyContent: 'flex-end', 
+//         }}
+//         >
+//             <TouchableWithoutFeedback onPress={Keyboard.dismiss} >             
+//                 <View style={styles.main}>
+//                     <CNRichTextEditor                   
+//                         ref={input => this.editor = input}
+//                         onSelectedTagChanged={this.onSelectedTagChanged}
+//                         onSelectedStyleChanged={this.onSelectedStyleChanged}
+//                         value={this.state.value}
+//                         style={{ backgroundColor : '#fff'}}
+//                         styleList={defaultStyles}
+//                         onValueChanged={this.onValueChanged}
+//                     />                        
+//                 </View>
+//             </TouchableWithoutFeedback>
+
+//             <View style={{
+//                 minHeight: 35
+//             }}>
+
+//                 <CNToolbar
+//                             style={{
+//                                 height: 35,
+//                             }}
+//                             iconSetContainerStyle={{
+//                                 flexGrow: 1,
+//                                 justifyContent: 'space-evenly',
+//                                 alignItems: 'center',
+//                             }}
+//                             size={30}
+//                             iconSet={[
+//                                 {
+//                                     type: 'tool',
+//                                     iconArray: [{
+//                                         toolTypeText: 'image',
+//                                         iconComponent:
+//                                             <Text style={styles.toolbarButton}>
+//                                             image
+//                                             </Text>
+//                                     }]
+//                                 },
+//                                 {
+//                                     type: 'tool',
+//                                     iconArray: [{
+//                                         toolTypeText: 'bold',
+//                                         buttonTypes: 'style',
+//                                         iconComponent:
+//                                             <Text style={styles.toolbarButton}>
+//                                             bold
+//                                             </Text>
+//                                     }]
+//                                 },
+//                                 {
+//                                     type: 'seperator'
+//                                 },
+//                                 {
+//                                     type: 'tool',
+//                                     iconArray: [
+//                                         {
+//                                             toolTypeText: 'body',
+//                                             buttonTypes: 'tag',
+//                                             iconComponent:
+//                                                 <Text style={styles.toolbarButton}>
+//                                                 body
+//                                                 </Text>
+//                                         },
+//                                     ]
+//                                 },
+//                                 {
+//                                     type: 'tool',
+//                                     iconArray: [
+//                                         {
+//                                             toolTypeText: 'ul',
+//                                             buttonTypes: 'tag',
+//                                             iconComponent:
+//                                                 <Text style={styles.toolbarButton}>
+//                                                 ul
+//                                                 </Text>
+//                                         }
+//                                     ]
+//                                 },
+//                                 {
+//                                     type: 'tool',
+//                                     iconArray: [
+//                                         {
+//                                             toolTypeText: 'ol',
+//                                             buttonTypes: 'tag',
+//                                             iconComponent:
+//                                                 <Text style={styles.toolbarButton}>
+//                                                 ol
+//                                                 </Text>
+//                                         }
+//                                     ]
+//                                 },
+//                             ]}
+//                             selectedTag={this.state.selectedTag}
+//                             selectedStyles={this.state.selectedStyles}
+//                             onStyleKeyPress={this.onStyleKeyPress}
+//                         />
+//             </View>
+//     </KeyboardAvoidingView>
+//     );
+// }
+
+// }
+
+// const styles = StyleSheet.create({
+// main: {
+//     flex: 1,
+//     marginTop: 10,
+//     paddingLeft: 30,
+//     paddingRight: 30,
+//     // paddingBottom: 1,
+//     alignItems: 'stretch',
+// },
+// toolbarButton: {
+//     fontSize: 20,
+//     width: 28,
+//     height: 28,
+//     textAlign: 'center'
+// },
+// italicButton: {
+//     fontStyle: 'italic'
+// },
+// boldButton: {
+//     fontWeight: 'bold'
+// },
+// underlineButton: {
+//     textDecorationLine: 'underline'
+// },
+// lineThroughButton: {
+//     textDecorationLine: 'line-through'
+// },
+// });
+
   
-  });
+
 // import React, {Component} from 'react';
 // import {
 //   AppRegistry,

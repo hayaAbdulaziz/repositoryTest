@@ -7,16 +7,21 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import React, {Component} from 'react';
 import { StyleSheet, Text, View ,ScrollView } from 'react-native';
-
-
+// import PlainTextExample from "./PlainTextExample";
+import Test from "./Test";
 // export default function CreateTicketThirdPage() {
   
-  import Demo from './Demo';
-  
+  // import Demo from './Demo';
+  // import HBRichTextEditor from './HBRichTextEditor';
+  // import Zssrichtexteditor from './Zssrichtexteditor';
   export default function App() {
     return (
   <View>
-    <Demo />
+    {/* <Demo /> */}
+    {/* <Editor /> */}
+    {/* <Zssrichtexteditor/> */}
+    {/* <PlainTextExample /> */}
+    <Test />
   </View>
 
  

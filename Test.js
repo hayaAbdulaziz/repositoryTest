@@ -43,23 +43,15 @@ const defaultStyles = getDefaultStyles();
 
 return(
 <View style={styles.container}>
-<TextInput style={styles.textinput} >
-</TextInput>
- <Image style={styles.Textimg} source={Textimg}></Image>
- <Image  style={styles.Block} source={Block}></Image>
- <Image style={styles.Rectangle8} source={Rectangle8}></Image>
 <KeyboardAvoidingView 
             behavior="padding" 
             enabled
             keyboardVerticalOffset={0}
-            style={{
-                flex: 1,
-                paddingTop: 20,
-                backgroundColor:'#eee',
-                flexDirection: 'column', 
-                justifyContent: 'flex-end', 
-            }}
+            style={styles.textinput}
             >
+ <Image style={styles.Textimg} source={Textimg}></Image>
+ <Image  style={styles.Block} source={Block}></Image>
+ <Image style={styles.Rectangle8} source={Rectangle8}></Image>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss} >             
                     <View style={styles.main}>
                         <CNRichTextEditor                   
@@ -67,7 +59,7 @@ return(
                             onSelectedTagChanged={this.onSelectedTagChanged}
                             onSelectedStyleChanged={this.onSelectedStyleChanged}
                             value={this.state.value}
-                            style={{ backgroundColor : '#fff'}}
+                            // style={{ backgroundColor : '#fff'}}
                             styleList={defaultStyles}
                             onValueChanged={this.onValueChanged}
                         />                        
@@ -180,7 +172,7 @@ const styles = StyleSheet.create({
         top: 381 ,
         bottom: 286 ,
         borderRadius: 5, 
-       //  borderColor : " #E5E5E5",
+        borderColor : " #E5E5E5",
        backgroundColor:'#F2F3FD',
        borderColor : '#D0D3E8',
        borderWidth : 0.5 ,
@@ -189,28 +181,27 @@ const styles = StyleSheet.create({
     },
     Textimg:{
         width: 150 ,
-        height: 10.5 ,
-        top:417.75 ,
+        height: 11.25 ,
+        top:20 ,
         bottom:499.75 ,
-        left : -95 ,
-
+        left : 15 ,
 
 
     },
     Block :{
         width: 150 ,
         height: 10.5 ,
-        top:427.75 ,
+        top:25 ,
         bottom:468.75 ,
-        left : -95 ,
+        left : 15 ,
       
  
     } ,
     Rectangle8:{
         width: 336 ,
-        top: 435 ,
+        top: 30 ,
         bottom:453 ,
-        left : -13 ,
+        left : 0 ,
         // right :20 ,
     },
     main: {
@@ -225,18 +216,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         width: 28,
         height: 28,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     italicButton: {
-        fontStyle: 'italic'
+        fontStyle: 'italic',
     },
     boldButton: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     underlineButton: {
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
     },
     lineThroughButton: {
-        textDecorationLine: 'line-through'
+        textDecorationLine: 'line-through',
     },
   });
